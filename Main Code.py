@@ -1,10 +1,11 @@
-import requests 
+import requests #Library required for using APIs
 
-#Testing git commit
-def get_weather(latitude, longitude):
+def getWeather(latitude, longitude):
+    #Set up the API request URL
     url = f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&current_weather=true"
     response = requests.get(url)
-    if response.status_code == 200:
+    if response.status_code == 200: #Check if the request was successful
+        #Extract the temperature and weather code from the API response
         data = response.json()
         temperature = data['current_weather']['temperature']
         weatherCode = data['current_weather']['weathercode']
@@ -13,7 +14,8 @@ def get_weather(latitude, longitude):
         return None
 
 def displayWeather(latitude, longitude):
-    temperature, weatherCode = get_weather(latitude, longitude)
+    temperature, weatherCode = getWeather(latitude, longitude) #Get the temperature and weather code at a certain location
+    #Dictionary mapping weather codes to descriptions
     weatherDict = {
         0: "Clear skies",
         1: "Mostly clear",
@@ -45,14 +47,17 @@ def displayWeather(latitude, longitude):
         99: "Heavy thunderstorm"
     }
     if temperature is not None:
+        #Print the temperature and weather description
         print(f"{temperature}°C, {weatherDict[weatherCode]}")
     else:
         print("API request failed")
 
 def getCoords(city):
+    #Set up the API request URL
     url = f"https://geocoding-api.open-meteo.com/v1/search?name={city}"
     response = requests.get(url)
-    if response.status_code == 200:
+    if response.status_code == 200: #Check if API request was successful
+        #Extract latitude and longitude from the API response
         data = response.json()
         if data['results']:
             latitude = data['results'][0]['latitude']
