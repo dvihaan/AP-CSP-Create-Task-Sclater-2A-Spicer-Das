@@ -69,9 +69,15 @@ def getCoords(city):
         return None, None
 
 def main():
-    cityName = input("Enter city name: ")
-    latitude, longitude = getCoords(cityName)
-    displayWeather(latitude, longitude)
+    cont = True
+    while cont:
+        cityName = input("Enter city name: ")
+        latitude, longitude = getCoords(cityName)
+        if latitude is not None:
+            displayWeather(latitude, longitude)
+        else:
+            print("City not found")
+        cont = input("Do you want to check the weather for another city? (y/n) ") == "y"
 
 if __name__ == "__main__":
     main()
