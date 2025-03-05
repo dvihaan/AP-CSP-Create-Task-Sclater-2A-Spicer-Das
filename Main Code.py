@@ -36,7 +36,7 @@ def displayWeather(latitude, longitude):
 
     Prints:
         The temperature in Celsius and a description of the weather condition.
-        If the API request fails, prints "API request failed".
+        If the API request fails, it prints "API request failed".
     """
     temperature, weatherCode = getWeather(latitude, longitude) #Get the temperature and weather code at a certain location
     weatherDict = {
@@ -79,7 +79,7 @@ def getCoords(city):
     Retrieves the latitude and longitude coordinates for a given city using the Open-Meteo Geocoding API.
 
     Args:
-        city (str): The name of the city for which to retrieve coordinates.
+        city (str): The name of the city to retrieve coordinates.
 
     Returns:
         tuple: A tuple containing the latitude and longitude of the city if found, otherwise (None, None).
