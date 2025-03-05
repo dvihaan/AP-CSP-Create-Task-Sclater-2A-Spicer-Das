@@ -15,7 +15,6 @@ def getWeather(latitude, longitude):
 
 def displayWeather(latitude, longitude):
     temperature, weatherCode = getWeather(latitude, longitude) #Get the temperature and weather code at a certain location
-    #Dictionary mapping weather codes to descriptions
     weatherDict = {
         0: "Clear skies",
         1: "Mostly clear",
@@ -47,7 +46,6 @@ def displayWeather(latitude, longitude):
         99: "Heavy thunderstorm"
     }
     if temperature is not None:
-        #Print the temperature and weather description
         print(f"{temperature}°C, {weatherDict[weatherCode]}")
     else:
         print("API request failed")
